@@ -10,21 +10,35 @@ function adicionar ()
     let friend = document.getElementById('nome-amigo');
     let list = document.getElementById('lista-amigos');
 
-    //add the friend to the list of friends
-    friends.push(friend.value);
-
-    //if is empty, else...
-    if (list.textContent == '')
+    //check if it was written a name
+    if (friend.value != ' ' && friend.value)
     {
-        list.textContent = friend.value;
-    }
-    else {
-        list.textContent += ', ' + friend.value;
-    }
+        //check if the friend was already inserted
+        if (friends.includes(friend.value))
+        {
+            alert('This friend was already added to the list!');
+            return;
+        }
 
-    friend.value = null;
+        //add the friend to the list of friends
+        friends.push(friend.value);
 
-    atualizarLista();
+        //if is empty, else...
+        if (list.textContent == '')
+        {
+            list.textContent = friend.value;
+        }
+        else {
+            list.textContent += ', ' + friend.value;
+        }
+
+        friend.value = null;
+
+        atualizarLista();
+    }
+    else  
+        alert('ERRO!!! Nome vazio! :(')
+
 }
 
 function atualizarLista() {
@@ -69,6 +83,10 @@ function sortear ()
 {
     if (friends[0] == null)
         alert('the friends list is empty!!!');
+    else if (friends[1] == null)
+    {
+        alert('There is just one friend!! Its impossible to draw! :(')
+    }
     else
     {
         //sort and increment the friends that picked each other
